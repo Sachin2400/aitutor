@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Teleprompter Pro</title>
+  <meta name="description" content="AI Interview Teleprompter">
+  <link rel="stylesheet" href="teleprompter.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>AI Teleprompter Pro</h1>
+        <p class="tip">Live AI Interview Assistant</p>
+      </div>
+
+      <div class="status">
+        <span class="dot" id="dot"></span>
+        <span id="status">Idle</span>
+        <button id="settingsBtn" type="button">⚙ Settings</button>
+        <button id="fullscreenBtn" type="button">⛶ Fullscreen</button>
+      </div>
+    </header>
+
+    <p class="error hidden" id="error" role="alert"></p>
+
+    <p class="heard">
+      Heard: <span id="heard">—</span>
+    </p>
+
+    <div id="view" role="region" aria-live="polite">Waiting...</div>
+
+    <div class="grid">
+      <button class="primary" id="startBtn" type="button">🎤 Start Listening</button>
+      <button id="restartBtn" type="button">Restart</button>
+      <button id="againBtn" type="button">Generate Again</button>
+      <button id="scrollBtn" type="button">Start Scroll</button>
+      <button id="rewindBtn" type="button">Rewind</button>
+      <button id="clearBtn" type="button">Clear</button>
+      <button id="documentBtn" type="button">📄 Upload Document</button>
+      <input type="file" id="documentFile" accept=".txt,.md,.json,.csv" hidden>
+      <button id="stopDocumentBtn" type="button">❌ Stop Document</button>
+      <button id="speakBtn" type="button">🔊 Read</button>
+      <button id="muteBtn" type="button">🔇 Stop</button>
+    </div>
+
+    <div class="sliders">
+      <label for="speed">
+        Scroll Speed <span id="speedVal">40</span> px/s
+        <input type="range" id="speed" min="5" max="200" value="40">
+      </label>
+
+      <label for="font">
+        Font Size <span id="fontVal">34</span> px
+        <input type="range" id="font" min="18" max="72" value="34">
+      </label>
+    </div>
+
+    <p class="tip">Chrome Recommended • Allow Microphone • Same WiFi for Tablet</p>
+  </div>
+
+  <div class="modal hidden" id="settings" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="box">
+      <h2 id="settingsTitle">Settings</h2>
+      <p class="tip">Your API keys stay only in this browser.</p>
+
+      <label for="provider">AI Provider</label>
+      <select id="provider">
+        <option value="gemini">Gemini</option>
+        <option value="groq">Groq</option>
+      </select>
+
+      <label for="geminiKey">Gemini API Key</label>
+      <div class="passwordRow">
+        <input type="password" id="geminiKey" placeholder="AIza..." autocomplete="off">
+        <button id="showGemini" type="button">👁</button>
+      </div>
+
+      <label for="groqKey">Groq API Key</label>
+      <div class="passwordRow">
+        <input type="password" id="groqKey" placeholder="gsk_..." autocomplete="off">
+        <button id="showGroq" type="button">👁</button>
+      </div>
+
+      <p class="tip">API Key Status</p>
+      <p id="saveMsg">No Key Saved</p>
+      <p id="keyTimer">No Active Session</p>
+
+      <div class="row">
+        <button class="primary" id="saveBtn" type="button">💾 Save</button>
+        <button id="closeBtn" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="teleprompter.js"></script>
+</body>
+</html>

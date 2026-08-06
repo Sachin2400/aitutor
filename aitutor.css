@@ -1,0 +1,333 @@
+:root {
+  --bg: #0b0f14;
+  --card: #141a22;
+  --border: #263140;
+  --fg: #e8eef6;
+  --muted: #93a1b3;
+  --primary: #4da3ff;
+  --danger: #ff5d5d;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-inline-size: 1100px;
+  margin-inline: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-block-size: 100vh;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.dot {
+  inline-size: 10px;
+  block-size: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.dot.live {
+  background: var(--danger);
+  animation: pulse 1s infinite ease-in-out;
+  will-change: opacity;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.error {
+  background: rgba(255, 93, 93, 0.12);
+  border: 1px solid rgba(255, 93, 93, 0.5);
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.heard {
+  color: var(--muted);
+  font-size: 14px;
+  min-block-size: 20px;
+}
+
+.heard span {
+  color: var(--fg);
+}
+
+#view {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  line-height: 1.55;
+  font-size: 34px;
+  max-block-size: 55vh;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+button {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover { background: #1c2531; }
+button:active { transform: scale(0.98); }
+
+button.primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #06121f;
+}
+
+button.primary:hover { background: #3b92f0; }
+
+.sliders {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+}
+
+label {
+  font-size: 14px;
+  color: var(--muted);
+  display: block;
+}
+
+input[type="range"] {
+  inline-size: 100%;
+  accent-color: var(--primary);
+  margin-block-start: 8px;
+  cursor: pointer;
+}
+
+input[type="password"],
+input[type="text"],
+select {
+  inline-size: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  font-family: inherit;
+  margin-block-start: 10px;
+  outline: none;
+}
+
+select { cursor: pointer; }
+
+input[type="password"]:focus,
+input[type="text"]:focus,
+select:focus {
+  border-color: var(--primary);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.modal .box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  inline-size: 100%;
+  max-inline-size: 420px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  margin-block-start: 14px;
+}
+
+.row > * { flex: 1; }
+
+.tip {
+  color: var(--muted);
+  font-size: 12px;
+  padding-block-end: 16px;
+}
+
+/* Styling for Code Blocks rendered by Markdown */
+.code-box {
+  background: #090d12;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.code-header {
+  background: #18202a;
+  color: var(--primary);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.code-box pre {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.code-box code {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 16px;
+  color: #a9b7c6;
+}
+:root {
+  --bg: #0b0f14;
+  --card: #141a22;
+  /* ... rest of your existing variables ... */
+}
+
+/* ... all of your existing styles (body, .wrap, header, buttons, modal, etc.) ... */
+
+.tip {
+  color: var(--muted);
+  font-size: 12px;
+  padding-block-end: 16px; /* This is your current final property */
+}
+
+/* ==========================================================================
+   PASTE THE NEW SNIPPET DIRECTLY BELOW THIS LINE (AT THE VERY END OF FILE)
+   ========================================================================== */
+
+/* ---- Advanced Code Block Rendering ---- */
+.code-box {
+  background: #090d12;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-block: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-inline-size: 100%;
+}
+
+.code-header {
+  background: #18202a;
+  color: var(--primary);
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code-box pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto; /* Allows code to scroll horizontally instead of stretching the screen */
+  background: #0d1117;
+}
+
+.code-box code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  color: #c9d1d9;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+}
+/* Style adjustment within the code header box */
+.code-header button.copy-code-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  margin: 0;
+  transition: all 0.15s ease;
+}
+
+.code-header button.copy-code-btn:hover {
+  background: #263140;
+  color: var(--fg);
+  border-color: var(--primary);
+}
